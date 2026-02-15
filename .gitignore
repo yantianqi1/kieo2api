@@ -1,6 +1,6 @@
 .claude/settings.local.json
-kiro2api
-main
+/kiro2api
+/main
 .env
 
 # Docker 相关文件
