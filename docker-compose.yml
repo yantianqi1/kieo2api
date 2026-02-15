@@ -1,9 +1,6 @@
 services:
   kiro2api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: kiro2api:local
+    image: "${KIRO2API_IMAGE:-ghcr.io/yantianqi1/kieo2api:main}"
     container_name: kiro2api
     restart: unless-stopped
     ports:
@@ -13,7 +10,7 @@ services:
     volumes:
       - ./data:/app/data
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:${PORT:-8080}/health"]
+      test: ["CMD-SHELL", "curl -fsS http://localhost:${PORT:-8080}/health >/dev/null"]
       interval: 30s
       timeout: 10s
       retries: 3
